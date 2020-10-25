@@ -6,8 +6,9 @@ Cropping, scaling and rotation are computed as individual transformation matrice
 
 `example.py` contains examples of how to use the transformations in `transforms.py`.
 
-<img src="no_augmentation.png" alt="vrs" height="200"/><img src="with_random_shift.png" alt="vrs" height="200"/>
+<img src="no_augmentation.png" alt="vrs" height="200"/><img src="with_random_shift.png" alt="vrs" height="200"/><img src="with_random_shift_rotation.png" alt="vrs" height="200"/><img src="rand_shift_rotation_gamma_noise.png" alt="vrs" height="200"/>
 
+<em>Figure: Examples of augmentations. </em>
 ## License
 
 Code is licensed under the MIT License - see [LICENSE.md](LICENSE.md) for details.
