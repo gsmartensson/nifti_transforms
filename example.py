@@ -17,14 +17,17 @@ import os
 import transforms as tfs
 np.random.seed(0)
 
+# Filename to augment. Uses MNI brain template in FSL dir if installed.
 fsl_path=os.environ['FSLDIR']
 fname = os.path.join(fsl_path,'data','standard','MNI152_T1_1mm.nii.gz' )
 
-#%% Three different 
+#%% Four different augmentations
 new_dim = [160,160,160] # output dimension of transformed images
 new_res = [1,1,1]# output resolution (1mm x 1mm x 1mm)
-title_dict = {0:'No augmentation'}
+
+
 # no random augmentation in transform
+title_dict = {0:'No augmentation'}
 t0=tfs.ComposeMRI([
                 tfs.LoadNifti(), # image information stored as dict
                 tfs.TranslateToCom(), # translate to image's center of mass
@@ -88,12 +91,13 @@ t3=tfs.ComposeMRI([
 
 #%% Plot example images
 def plot_img(img,title_str=''):
-    plt.figure()
+    fig=plt.figure()
     plt.imshow(np.rot90(img[new_dim[0]//2,:,:]),cmap='gray',vmin=-1,vmax=.6); 
     
     plt.axis('off')#;plt.colorbar()
     plt.title(title_str)
     plt.show()
+    fig.savefig(title_str.replace(' ','_').replace('+','_').replace(',','_').replace('__','_').replace('__','_').lower()+'.png')
     
 for i,transforms in enumerate([t0,t1,t2,t3]):
     img = transforms(fname)
